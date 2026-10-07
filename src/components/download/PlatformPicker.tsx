@@ -2,8 +2,9 @@
 
 import { useRef, type KeyboardEvent } from "react";
 import type { DownloadOption } from "@/lib/releases";
+import { cn } from "@/lib/cn";
+import { nextRadioIndex } from "@/lib/theme";
 import { PlatformIcon } from "./PlatformIcon";
-import styles from "./Download.module.css";
 
 /** Compact requirement shown under an available platform that isn't the visitor's own. */
 const shortRequirement: Record<string, string> = {
@@ -34,33 +35,15 @@ export function PlatformPicker({
 
   const onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     const current = options.findIndex((o) => o.platformId === selectedId);
-    const last = options.length - 1;
-    let next: number;
-    switch (event.key) {
-      case "ArrowRight":
-      case "ArrowDown":
-        next = current >= last ? 0 : current + 1;
-        break;
-      case "ArrowLeft":
-      case "ArrowUp":
-        next = current <= 0 ? last : current - 1;
-        break;
-      case "Home":
-        next = 0;
-        break;
-      case "End":
-        next = last;
-        break;
-      default:
-        return;
-    }
+    const next = nextRadioIndex(event.key, current, options.length);
+    if (next === null) return;
     event.preventDefault();
     move(next);
   };
 
   return (
     <div
-      className={styles.picker}
+      className="grid gap-1 rounded-2xl border border-border bg-surface p-1 sm:grid-cols-3"
       role="radiogroup"
       aria-label="Choose your platform"
       onKeyDown={onKeyDown}
@@ -83,12 +66,19 @@ export function PlatformPicker({
             role="radio"
             aria-checked={checked}
             tabIndex={checked ? 0 : -1}
-            className={styles.option}
+            className="flex min-h-target items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-medium text-fg-muted transition-colors duration-200 ease-calm hover:text-fg focus-visible:-outline-offset-2 aria-checked:bg-bg aria-checked:text-fg aria-checked:ring-1 aria-checked:ring-border aria-checked:ring-inset sm:flex-col sm:gap-1.5 sm:px-2 sm:pt-3.5 sm:pb-3 sm:text-center"
             onClick={() => onSelect(option.platformId)}
           >
-            <PlatformIcon platformId={option.platformId} className={styles.optionIcon} />
+            <PlatformIcon platformId={option.platformId} className="size-5.5 flex-none fill-current" />
             <span>{option.label}</span>
-            <small className={recommended ? styles.recommended : undefined}>{note}</small>
+            <small
+              className={cn(
+                "ml-auto font-mono text-2xs leading-tight tracking-widest uppercase sm:ml-0",
+                recommended ? "text-accent-text" : "text-fg-subtle",
+              )}
+            >
+              {note}
+            </small>
           </button>
         );
       })}

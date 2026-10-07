@@ -1,5 +1,3 @@
-import styles from "./Facts.module.css";
-
 const facts = [
   {
     title: "Pauses itself",
@@ -17,11 +15,14 @@ const facts = [
 
 export function Facts() {
   return (
-    <section className={styles.facts} aria-label="Highlights">
+    <section
+      className="grid gap-6 border-t border-border py-16 sm:py-20 md:grid-cols-3 md:gap-10 lg:py-28"
+      aria-label="Highlights"
+    >
       {facts.map((f) => (
         <div key={f.title}>
-          <h3>{f.title}</h3>
-          <p>{f.body}</p>
+          <h3 className="mb-1.5 font-display text-xl leading-tight">{f.title}</h3>
+          <p className="text-body-sm text-fg-muted">{f.body}</p>
         </div>
       ))}
     </section>

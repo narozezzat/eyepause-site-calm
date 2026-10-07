@@ -1,7 +1,6 @@
 "use client";
 
 import { useDemoCountdown } from "@/hooks/useDemoCountdown";
-import styles from "./Hero.module.css";
 
 const CYCLE = 20 * 60;
 const START = 19 * 60 + 42;
@@ -32,19 +31,25 @@ export function CountdownDial() {
 
   return (
     <div
-      className={styles.dial}
+      className="@container relative order-first aspect-square w-full max-w-75 justify-self-center md:order-none md:max-w-100"
       role="img"
       aria-label="Example countdown: next break in 19 minutes 42 seconds"
     >
-      <svg viewBox="0 0 200 200" fill="none" strokeLinecap="round" aria-hidden="true">
-        <g className={styles.ticks}>
+      <svg
+        className="block size-full"
+        viewBox="0 0 200 200"
+        fill="none"
+        strokeLinecap="round"
+        aria-hidden="true"
+      >
+        <g className="stroke-border">
           {ticks.map((t, i) => (
             <line key={i} x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2} strokeWidth={t.width} />
           ))}
         </g>
-        <circle className={styles.track} cx="100" cy="100" r="78" strokeWidth="2" />
+        <circle className="stroke-surface-2" cx="100" cy="100" r="78" strokeWidth="2" />
         <circle
-          className={styles.progress}
+          className="stroke-accent transition-[stroke-dashoffset] duration-1000 ease-linear"
           cx="100"
           cy="100"
           r="78"
@@ -54,11 +59,13 @@ export function CountdownDial() {
           transform="rotate(-90 100 100)"
         />
       </svg>
-      <div className={styles.readout} aria-hidden="true">
-        <b>
+      <div className="absolute inset-0 grid place-content-center text-center" aria-hidden="true">
+        <b className="font-display text-dial font-light tracking-tight tabular-nums">
           {pad(Math.floor(left / 60))}:{pad(left % 60)}
         </b>
-        <span>until next break</span>
+        <span className="mt-3 font-mono text-2xs font-medium tracking-caps text-fg-subtle uppercase">
+          until next break
+        </span>
       </div>
     </div>
   );

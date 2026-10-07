@@ -8,7 +8,6 @@ import type { DownloadOption } from "@/lib/releases";
 import { DownloadButton } from "./DownloadButton";
 import { MobileNotice } from "./MobileNotice";
 import { PlatformPicker } from "./PlatformPicker";
-import styles from "./Download.module.css";
 
 interface DownloadPanelProps {
   options: DownloadOption[];
@@ -36,7 +35,7 @@ export function DownloadPanel({ options }: DownloadPanelProps) {
         recommendedId={recommendedId}
         onSelect={setOverride}
       />
-      <div className={styles.stage} aria-live="polite">
+      <div className="mt-5 min-h-52.5" aria-live="polite">
         <DownloadButton key={selectedId} option={selected} installSteps={installSteps} />
       </div>
     </div>

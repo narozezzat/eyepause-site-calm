@@ -4,18 +4,18 @@ export const display = Newsreader({
   subsets: ["latin"],
   style: ["normal", "italic"],
   axes: ["opsz"],
-  variable: "--font-display",
+  variable: "--font-newsreader",
   display: "swap",
 });
 
 export const body = Hanken_Grotesk({
   subsets: ["latin"],
-  variable: "--font-body",
+  variable: "--font-hanken",
   display: "swap",
 });
 
 export const mono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-mono",
+  variable: "--font-jetbrains",
   display: "swap",
 });

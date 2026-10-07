@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { site } from "@/config/site";
 import { body, display, mono } from "./fonts";
 import "./globals.css";
@@ -26,15 +27,22 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
+    // next-themes sets data-theme and color-scheme on <html> before hydration.
     <html
       lang="en"
       className={`${display.variable} ${body.variable} ${mono.variable}`}
+      suppressHydrationWarning
     >
       <body>
-        <a className="skip-link" href="#main">
-          Skip to content
-        </a>
-        {children}
+        <ThemeProvider>
+          <a
+            className="absolute top-3 left-4 z-20 inline-flex min-h-target -translate-y-[200%] items-center rounded-lg bg-fg px-4 font-semibold text-bg focus-visible:translate-y-0"
+            href="#main"
+          >
+            Skip to content
+          </a>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
