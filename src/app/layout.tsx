@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { site } from "@/config/site";
+import { themeInitScript } from "@/lib/theme";
 import { body, display, mono } from "./fonts";
 import "./globals.css";
 
@@ -29,7 +30,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       className={`${display.variable} ${body.variable} ${mono.variable}`}
+      // The inline script below sets data-theme and colour-scheme before React hydrates.
+      suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body>
         <a className="skip-link" href="#main">
           Skip to content

@@ -29,6 +29,10 @@
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 
   --target: 44px;
+  color-scheme: light dark;
+}
+
+:root[data-theme="light"] {
   color-scheme: light;
 }
 
@@ -135,6 +139,13 @@ a {
 
 main:focus {
   outline: none;
+}
+
+/* Set for one frame while the theme changes so colours swap at once, not mid-transition. */
+.theme-switching *,
+.theme-switching *::before,
+.theme-switching *::after {
+  transition: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

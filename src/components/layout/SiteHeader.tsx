@@ -1,5 +1,6 @@
 import { BrandMark } from "@/components/brand/BrandMark";
 import { withBasePath } from "@/config/site";
+import { ThemeToggle } from "./ThemeToggle";
 import styles from "./SiteHeader.module.css";
 
 const home = withBasePath("/");
@@ -17,13 +18,16 @@ export function SiteHeader() {
         <BrandMark className={styles.mark} />
         EyePause
       </a>
-      <nav className={styles.nav} aria-label="Primary">
-        {links.map((link) => (
-          <a key={link.label} href={link.href}>
-            {link.label}
-          </a>
-        ))}
-      </nav>
+      <div className={styles.end}>
+        <nav className={styles.nav} aria-label="Primary">
+          {links.map((link) => (
+            <a key={link.label} href={link.href}>
+              {link.label}
+            </a>
+          ))}
+        </nav>
+        <ThemeToggle />
+      </div>
     </header>
   );
 }

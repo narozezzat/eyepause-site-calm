@@ -20,6 +20,12 @@
   height: 22px;
 }
 
+.end {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
 .nav {
   display: flex;
   gap: 22px;
