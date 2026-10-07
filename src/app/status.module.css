@@ -1,0 +1,49 @@
+.loading {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.notFound {
+  padding-block: 96px 120px;
+}
+
+.eyebrow {
+  margin: 0 0 22px;
+  font: 500 12px/1 var(--mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.notFound h1 {
+  margin: 0;
+  font: 300 clamp(40px, 6vw, 68px) / 1.05 var(--display);
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.lede {
+  max-width: 46ch;
+  margin: 22px 0 32px;
+  font-size: 18px;
+  color: var(--ink-2);
+}
+
+.home {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target);
+  padding: 0 22px;
+  border-radius: 12px;
+  background: var(--ink);
+  color: var(--bg);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.home:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
