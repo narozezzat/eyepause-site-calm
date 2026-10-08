@@ -8,6 +8,7 @@ import { DownloadSection } from "@/components/sections/DownloadSection";
 import { Facts } from "@/components/sections/Facts";
 import { Hero } from "@/components/sections/Hero";
 import { QuieterDetails } from "@/components/sections/QuieterDetails";
+import { Watch } from "@/components/sections/Watch";
 import { getDownloads } from "@/lib/releases";
 
 export default async function Home() {
@@ -18,6 +19,7 @@ export default async function Home() {
       <SiteHeader />
       <main id="main" tabIndex={-1} className="wrap">
         <Hero />
+        <Watch />
         <Facts />
         <DayTour />
         <QuieterDetails />
