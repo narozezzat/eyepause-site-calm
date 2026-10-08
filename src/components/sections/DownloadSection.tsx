@@ -1,3 +1,4 @@
+import { Check } from "lucide-react";
 import { DownloadPanel } from "@/components/download/DownloadPanel";
 import type { DownloadOption } from "@/lib/releases";
 export function DownloadSection({ options }: { options: DownloadOption[] }) {
@@ -12,9 +13,7 @@ export function DownloadSection({ options }: { options: DownloadOption[] }) {
         </h2>
         <p>Get EyePause, set your rhythm, and let your menu bar keep time.</p>
         <div className="free-note">
-          <svg aria-hidden="true" className="icon">
-            <use href="#check" />
-          </svg>
+          <Check aria-hidden="true" className="icon" />
           Free. No subscription. No sign-up.
         </div>
       </div>

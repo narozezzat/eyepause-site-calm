@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowDownToLine } from "lucide-react";
 import type { MouseEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Notice } from "@/components/ui/Notice";
@@ -40,14 +41,11 @@ function Meta({ parts }: { parts: string[] }) {
 
 function DownloadIcon() {
   return (
-    <svg
+    <ArrowDownToLine
       className="size-5 fill-none stroke-current stroke-[1.8] [stroke-linecap:round] [stroke-linejoin:round]"
-      viewBox="0 0 24 24"
       aria-hidden="true"
       focusable="false"
-    >
-      <path d="M12 4v11m-4.5-4.5L12 15l4.5-4.5M5 19.5h14" />
-    </svg>
+    />
   );
 }
 

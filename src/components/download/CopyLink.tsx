@@ -1,5 +1,6 @@
 "use client";
 
+import { Check, Copy } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 
@@ -33,6 +34,7 @@ export function CopyLink({ url, label = "Copy link" }: CopyLinkProps) {
     }
   };
 
+  const CopyIcon = state === "copied" ? Check : Copy;
   return (
     <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
       <Button
@@ -40,21 +42,11 @@ export function CopyLink({ url, label = "Copy link" }: CopyLinkProps) {
         fullWidthOnMobile
         onClick={onCopy}
         icon={
-          <svg
+          <CopyIcon
             className="size-4.5 fill-none stroke-current stroke-[1.8] [stroke-linecap:round] [stroke-linejoin:round]"
-            viewBox="0 0 24 24"
             aria-hidden="true"
             focusable="false"
-          >
-            {state === "copied" ? (
-              <path d="m5 12.5 4.5 4.5L19 7.5" />
-            ) : (
-              <>
-                <rect x="8" y="8" width="12" height="12" rx="2" />
-                <path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" />
-              </>
-            )}
-          </svg>
+          />
         }
       >
         {state === "copied" ? "Copied" : label}

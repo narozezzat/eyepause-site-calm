@@ -1,3 +1,4 @@
+import { Moon, Settings2, Volume2 } from "lucide-react";
 import { BreakPreview } from "./BreakPreview";
 import { SampleStats } from "./SampleStats";
 export function DayTour() {
@@ -38,9 +39,7 @@ export function DayTour() {
           </p>
           <div className="feature-list">
             <div className="feature-line">
-              <svg aria-hidden="true" className="icon">
-                <use href="#moon" />
-              </svg>
+              <Moon aria-hidden="true" className="icon" />
               <div>
                 <h3>Steps back when you do</h3>
                 <p>
@@ -50,9 +49,7 @@ export function DayTour() {
               </div>
             </div>
             <div className="feature-line">
-              <svg aria-hidden="true" className="icon">
-                <use href="#settings" />
-              </svg>
+              <Settings2 aria-hidden="true" className="icon" />
               <div>
                 <h3>Your rhythm, your settings</h3>
                 <p>
@@ -62,9 +59,7 @@ export function DayTour() {
               </div>
             </div>
             <div className="feature-line">
-              <svg aria-hidden="true" className="icon">
-                <use href="#sound" />
-              </svg>
+              <Volume2 aria-hidden="true" className="icon" />
               <div>
                 <h3>A sound, or a little silence</h3>
                 <p>Choose a sound for your breaks. Or keep things quiet.</p>

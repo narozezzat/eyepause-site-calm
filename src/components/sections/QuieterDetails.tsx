@@ -1,24 +1,20 @@
+import { Check } from "lucide-react";
+
 export function QuieterDetails() {
   return (
     <div className="privacy-band">
       <p>Your eyes. Your Mac. Your business.</p>
       <div className="privacy-facts">
         <span>
-          <svg aria-hidden="true" className="icon">
-            <use href="#check" />
-          </svg>
+          <Check aria-hidden="true" className="icon" />
           100% local
         </span>
         <span>
-          <svg aria-hidden="true" className="icon">
-            <use href="#check" />
-          </svg>
+          <Check aria-hidden="true" className="icon" />
           No account
         </span>
         <span>
-          <svg aria-hidden="true" className="icon">
-            <use href="#check" />
-          </svg>
+          <Check aria-hidden="true" className="icon" />
           No telemetry
         </span>
       </div>

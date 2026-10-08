@@ -1,3 +1,4 @@
+import { ArrowDownToLine } from "lucide-react";
 import { MenuPreview } from "./MenuPreview";
 export function Hero() {
   return (
@@ -18,9 +19,7 @@ export function Hero() {
         </p>
         <div className="hero-actions">
           <a className="btn" href="#download">
-            <svg aria-hidden="true" className="icon">
-              <use href="#arrow" />
-            </svg>
+            <ArrowDownToLine aria-hidden="true" className="icon" />
             Get EyePause
           </a>
           <a className="text-link" href="#experience">
