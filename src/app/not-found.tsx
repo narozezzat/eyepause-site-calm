@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { withBasePath } from "@/config/site";
 
 export const metadata: Metadata = {

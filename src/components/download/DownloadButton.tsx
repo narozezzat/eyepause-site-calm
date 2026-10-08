@@ -1,7 +1,7 @@
 "use client";
 
 import type { MouseEvent } from "react";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { Notice } from "@/components/ui/Notice";
 import { useDownloadState } from "@/hooks/useDownloadState";
 import { formatBytes } from "@/lib/format";

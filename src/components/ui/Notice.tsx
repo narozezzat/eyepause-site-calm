@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
-import { cn } from "@/lib/cn";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { cn } from "@/lib/utils";
 
 export type NoticeTone = "info" | "error" | "success";
 
@@ -12,10 +13,10 @@ interface NoticeProps {
   className?: string;
 }
 
-const tones: Record<NoticeTone, { box: string; icon: string }> = {
-  info: { box: "border-border bg-surface", icon: "text-fg-subtle" },
-  error: { box: "border-danger/40 bg-danger-soft", icon: "text-danger" },
-  success: { box: "border-success/40 bg-success-soft", icon: "text-success" },
+const iconTone: Record<NoticeTone, string> = {
+  info: "text-fg-subtle",
+  error: "text-danger",
+  success: "text-success",
 };
 
 const icons: Record<NoticeTone, ReactNode> = {
@@ -43,14 +44,11 @@ const icons: Record<NoticeTone, ReactNode> = {
 export function Notice({ tone = "info", title, children, announce = true, className }: NoticeProps) {
   const role = announce ? (tone === "error" ? "alert" : "status") : undefined;
   return (
-    <div
-      className={cn("flex gap-3 rounded-card border px-4 py-3.5", tones[tone].box, className)}
-      role={role}
-    >
+    <Alert variant={tone} className={className} role={role}>
       <svg
         className={cn(
           "mt-0.5 size-5 flex-none fill-none stroke-current stroke-[1.8] [stroke-linecap:round] [stroke-linejoin:round]",
-          tones[tone].icon,
+          iconTone[tone],
         )}
         viewBox="0 0 24 24"
         aria-hidden="true"
@@ -59,9 +57,9 @@ export function Notice({ tone = "info", title, children, announce = true, classN
         {icons[tone]}
       </svg>
       <div className="min-w-0 text-body-sm text-pretty text-fg-muted">
-        {title && <p className="font-semibold text-fg">{title}</p>}
-        {children}
+        {title && <AlertTitle>{title}</AlertTitle>}
+        {children && <AlertDescription>{children}</AlertDescription>}
       </div>
-    </div>
+    </Alert>
   );
 }
