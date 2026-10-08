@@ -1,12 +1,17 @@
-interface SiteFooterProps {
-  version?: string;
-}
-
-export function SiteFooter({ version }: SiteFooterProps) {
+import { withBasePath } from "@/config/site";
+export function SiteFooter() {
   return (
-    <footer className="flex flex-wrap justify-between gap-x-4 gap-y-2 border-t border-border pt-6 pb-10 text-caption text-fg-subtle">
-      <span>{version ? `EyePause ${version}` : "EyePause"}</span>
-      <span>Free for macOS. No account, no telemetry.</span>
-    </footer>
+    <>
+      <footer>
+        <a href={withBasePath("/")} className="brand">
+          <svg aria-hidden="true" className="brandmark icon">
+            <use href="#eye" />
+          </svg>
+          EyePause
+        </a>
+        <span>A small reminder to look beyond your screen.</span>
+        <span>Made for macOS 14+</span>
+      </footer>
+    </>
   );
 }

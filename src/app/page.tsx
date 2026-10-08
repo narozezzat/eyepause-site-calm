@@ -1,3 +1,4 @@
+import { CommonQuestions } from "@/components/sections/CommonQuestions";
 import { Splash } from "@/components/brand/Splash";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
@@ -10,22 +11,19 @@ import { getDownloads } from "@/lib/releases";
 
 export default async function Home() {
   const options = await getDownloads();
-  const version = options[0]?.version;
-
   return (
     <>
       <Splash />
-      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-        <SiteHeader />
-        <main id="main" tabIndex={-1}>
-          <Hero />
-          <DownloadSection options={options} />
-          <DayTour />
-          <QuieterDetails />
-          <Facts />
-        </main>
-        <SiteFooter version={version} />
-      </div>
+      <SiteHeader />
+      <main id="main" tabIndex={-1} className="wrap">
+        <Hero />
+        <Facts />
+        <DayTour />
+        <QuieterDetails />
+        <DownloadSection options={options} />
+        <CommonQuestions />
+        <SiteFooter />
+      </main>
     </>
   );
 }

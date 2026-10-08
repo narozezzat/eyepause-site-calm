@@ -31,6 +31,7 @@ export interface DownloadOption {
   version: string;
   publishedAt: string;
   requirements: string;
+  requirementShort: string;
   primary: DownloadFile | null;
   alternate: DownloadFile | null;
 }

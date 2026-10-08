@@ -36,7 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         <ThemeProvider>
           <a
-            className="absolute top-3 left-4 z-20 inline-flex min-h-target -translate-y-[200%] items-center rounded-lg bg-fg px-4 font-semibold text-bg focus-visible:translate-y-0"
+            className="fixed top-2 left-4 z-40 inline-flex min-h-target -translate-y-[200%] items-center rounded-control bg-fg px-4 text-body-sm font-semibold text-bg focus-visible:translate-y-0"
             href="#main"
           >
             Skip to content

@@ -31,7 +31,7 @@ export function CountdownDial() {
 
   return (
     <div
-      className="@container relative order-first aspect-square w-full max-w-75 justify-self-center md:order-none md:max-w-100"
+      className="@container relative aspect-square w-full max-w-64 justify-self-start md:max-w-100 md:justify-self-center"
       role="img"
       aria-label="Example countdown: next break in 19 minutes 42 seconds"
     >
@@ -63,7 +63,7 @@ export function CountdownDial() {
         <b className="font-display text-dial font-light tracking-tight tabular-nums">
           {pad(Math.floor(left / 60))}:{pad(left % 60)}
         </b>
-        <span className="mt-3 font-mono text-2xs font-medium tracking-caps text-fg-subtle uppercase">
+        <span className="mt-3 font-mono text-micro font-medium tracking-caps text-fg-subtle uppercase">
           until next break
         </span>
       </div>
