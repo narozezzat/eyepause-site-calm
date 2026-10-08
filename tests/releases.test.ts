@@ -3,6 +3,7 @@ import type { PlatformConfig } from "@/config/platforms";
 import { parseRelease } from "@/lib/releases/parse";
 import { resolveDownloads } from "@/lib/releases/resolve";
 import type { Release } from "@/lib/releases/types";
+import { downloadMeta, downloadView } from "@/lib/releases/view";
 
 const release: Release = {
   version: "2.0.0",
@@ -19,12 +20,13 @@ const platforms: PlatformConfig[] = [
     id: "macos",
     label: "macOS",
     status: "available",
-    requirements: "macOS 14+",
+    requirements: "macOS 14 Sonoma or later",
+    requirementShort: "macOS 14+",
     primary: { pattern: /\.dmg$/, label: "DMG" },
     alternate: { pattern: /\.zip$/, label: "ZIP" },
     installSteps: [],
   },
-  { id: "windows", label: "Windows", status: "coming-soon", requirements: "Planned", installSteps: [] },
+  { id: "windows", label: "Windows", status: "coming-soon", requirements: "Planned", requirementShort: "Planned", installSteps: [] },
 ];
 
 describe("resolveDownloads", () => {
@@ -69,5 +71,41 @@ describe("parseRelease", () => {
     expect(() => parseRelease(null)).toThrow();
     expect(() => parseRelease({ ...release, source: "web" })).toThrow();
     expect(() => parseRelease({ ...release, assets: [{ name: "x" }] })).toThrow();
+  });
+});
+
+describe("downloadView", () => {
+  const [mac, win] = resolveDownloads(release, platforms, "/downloads");
+
+  it("is available when the primary installer is attached", () => {
+    expect(downloadView(mac)).toBe("available");
+  });
+
+  it("is an error when only the alternate format is attached", () => {
+    const zipOnly = { ...release, assets: [{ ...release.assets[0], available: false }, release.assets[1]] };
+    const [m] = resolveDownloads(zipOnly, platforms, "/downloads");
+    expect(downloadView(m)).toBe("error");
+  });
+
+  it("is unavailable when nothing is attached", () => {
+    const none = { ...release, assets: release.assets.map((a) => ({ ...a, available: false })) };
+    const [m] = resolveDownloads(none, platforms, "/downloads");
+    expect(downloadView(m)).toBe("unavailable");
+  });
+
+  it("passes coming-soon through", () => {
+    expect(downloadView(win)).toBe("coming-soon");
+  });
+});
+
+describe("downloadMeta", () => {
+  const [mac] = resolveDownloads(release, platforms, "/downloads");
+
+  it("lists version, size, requirement and date", () => {
+    expect(downloadMeta(mac)).toEqual(["Version 2.0.0", "40.0 MB", "macOS 14+", "Oct 1, 2026"]);
+  });
+
+  it("drops the size when no file is attached", () => {
+    expect(downloadMeta(mac, null)).toEqual(["Version 2.0.0", "macOS 14+", "Oct 1, 2026"]);
   });
 });

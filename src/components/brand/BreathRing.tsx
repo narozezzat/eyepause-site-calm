@@ -1,4 +1,4 @@
-import { cn } from "@/lib/cn";
+import { cn } from "@/lib/utils";
 
 interface BreathRingProps {
   label: string;
@@ -31,7 +31,7 @@ export function BreathRing({ label, mode }: BreathRingProps) {
           transform="rotate(-90 50 50)"
         />
       </svg>
-      <p className="mt-4.5 text-center font-mono text-xs leading-none font-medium tracking-caps text-fg-subtle uppercase">
+      <p className="mt-4 text-center font-mono text-micro font-medium tracking-caps text-fg-subtle uppercase">
         {label}
       </p>
     </div>

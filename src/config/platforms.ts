@@ -12,6 +12,8 @@ export interface PlatformConfig {
   /** Flip to "available" and add asset rules once a build ships for this platform. */
   status: "available" | "coming-soon";
   requirements: string;
+  /** Compact form for the meta row and picker, e.g. "macOS 14+". */
+  requirementShort: string;
   primary?: AssetRule;
   alternate?: AssetRule;
   installSteps: string[];
@@ -23,6 +25,7 @@ export const platforms: PlatformConfig[] = [
     label: "macOS",
     status: "available",
     requirements: "macOS 14 Sonoma or later · Apple silicon and Intel",
+    requirementShort: "macOS 14+",
     primary: { pattern: /\.dmg$/i, label: "DMG" },
     alternate: { pattern: /\.zip$/i, label: "ZIP" },
     installSteps: [
@@ -36,6 +39,7 @@ export const platforms: PlatformConfig[] = [
     label: "Windows",
     status: "coming-soon",
     requirements: "Planned",
+    requirementShort: "Planned",
     installSteps: [],
   },
   {
@@ -43,6 +47,7 @@ export const platforms: PlatformConfig[] = [
     label: "Linux",
     status: "coming-soon",
     requirements: "Planned",
+    requirementShort: "Planned",
     installSteps: [],
   },
 ];
