@@ -1,4 +1,5 @@
 import { ArrowDownToLine } from "lucide-react";
+import { DialProgress, DialTime } from "./HeroDialLive";
 import { MenuPreview } from "./MenuPreview";
 export function Hero() {
   return (
@@ -33,7 +34,7 @@ export function Hero() {
         <div
           className="dial"
           role="img"
-          aria-label="Countdown dial, 14 minutes 32 seconds until your next break"
+          aria-label="Countdown dial showing the time until your next break"
         >
           <svg viewBox="0 0 420 420">
             <circle
@@ -532,17 +533,7 @@ export function Hero() {
               stroke="var(--border)"
               strokeWidth="3"
             />
-            <circle
-              cx="210"
-              cy="210"
-              r="143"
-              fill="none"
-              stroke="var(--accent)"
-              strokeWidth="3"
-              strokeDasharray="653 899"
-              transform="rotate(-90 210 210)"
-            />
-            <circle cx="68.5" cy="232.4" r="5" fill="var(--accent-text)" />
+            <DialProgress />
             <text
               x="210"
               y="25"
@@ -586,7 +577,7 @@ export function Hero() {
           </svg>
           <div className="read">
             <span className="label">A little focus. Then a little rest.</span>
-            <span className="time">14:32</span>
+            <DialTime />
             <span className="sub">UNTIL YOUR NEXT BREAK</span>
           </div>
         </div>

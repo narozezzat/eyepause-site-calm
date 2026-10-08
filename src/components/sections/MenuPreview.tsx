@@ -1,10 +1,10 @@
 "use client";
-import { useState } from "react";
+import { heroTimer, useDemoTimer } from "@/hooks/useDemoTimer";
+import { formatClock } from "@/lib/demo";
 
 export function MenuPreview() {
-  const [paused, setPaused] = useState(false);
-  const [skipped, setSkipped] = useState(false);
-  const time = skipped ? "20:00" : "14:32";
+  const { left, paused, skipped } = useDemoTimer(heroTimer);
+  const time = formatClock(left);
   return (
     <div className="popover" aria-label="Interactive EyePause menu bar preview">
       <div className="menubar">
@@ -28,21 +28,16 @@ export function MenuPreview() {
                 : "Timer running"}
           </span>
         </div>
-        <div className="pop-time">{time}</div>
+        <div className="pop-time" data-paused={paused || undefined}>
+          {time}
+        </div>
         <p className="pop-label">until your next break</p>
         <div className="pop-actions">
-          <button onClick={() => setPaused(!paused)}>
+          <button onClick={heroTimer.togglePause}>
             <span aria-hidden="true">{paused ? "▷" : "Ⅱ"}</span>{" "}
             {paused ? "Resume" : "Pause"}
           </button>
-          <button
-            onClick={() => {
-              setSkipped(true);
-              setPaused(false);
-            }}
-          >
-            Skip this break
-          </button>
+          <button onClick={heroTimer.skip}>Skip this break</button>
         </div>
       </div>
     </div>

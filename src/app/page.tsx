@@ -1,5 +1,6 @@
 import { CommonQuestions } from "@/components/sections/CommonQuestions";
 import { Splash } from "@/components/brand/Splash";
+import { MotionRuntime } from "@/components/motion/MotionRuntime";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { DayTour } from "@/components/sections/DayTour";
@@ -24,6 +25,9 @@ export default async function Home() {
         <CommonQuestions />
         <SiteFooter />
       </main>
+      {/* Lives with the page, not the layout, so it runs after the page (behind
+          loading.tsx) has hydrated and never rewrites text React still owns. */}
+      <MotionRuntime />
     </>
   );
 }
